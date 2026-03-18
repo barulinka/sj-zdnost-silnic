@@ -1,8 +1,7 @@
 // src/components/Login.jsx
-import React, { useState } from 'react'; 
-import { useState } from "react";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../firebase";
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export default function Login() {
   const [email, setEmail] = useState("");
