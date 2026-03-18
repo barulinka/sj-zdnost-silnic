@@ -1,7 +1,7 @@
 // Add this at the top
 import React from 'react'; 
-import MapPage from './components/MapPage';
+import TrafficMap from './components/TrafficMap';
 
 export default function App() {
-  return <MapPage />;
+  return <TrafficMap />;
 }

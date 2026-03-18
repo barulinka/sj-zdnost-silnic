@@ -1,25 +1,25 @@
 // src/controller/RoadController.js
 
-import { RoadModel } from '../model/RoadModel';
+import { TrafficModel } from '../model/RoadModel';
 
-const roadModel = new RoadModel();
+const trafficModel = new TrafficModel();
 
-export function getRoadMarkers() {
-  return roadModel.getMarkers();
+export function getTrafficIssues() {
+  return trafficModel.getIssues();
 }
 
-export async function addRoadMarker(place, situation, description) {
-  const coords = await roadModel.findCoordsByPlace(place);
-  roadModel.addMarker({
-    lat: coords.lat,
-    lng: coords.lng,
-    situation,
-    description,
+export async function reportTrafficIssue(location, condition, details) {
+  const coordinates = await trafficModel.geocodeLocation(location);
+  trafficModel.addIssue({
+    lat: coordinates.lat,
+    lng: coordinates.lng,
+    condition,
+    details,
   });
-  return roadModel.getMarkers();
+  return trafficModel.getIssues();
 }
 
-export function resetRoadMarkers() {
-  roadModel.clearMarkers();
-  return roadModel.getMarkers();
+export function clearTrafficIssues() {
+  trafficModel.resetIssues();
+  return trafficModel.getIssues();
 }

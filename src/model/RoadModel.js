@@ -1,28 +1,28 @@
 // src/model/RoadModel.js
 
-export class RoadModel {
-  constructor(initialMarkers = []) {
-    this.markers = initialMarkers;
+export class TrafficModel {
+  constructor(initialIssues = []) {
+    this.issues = initialIssues;
   }
 
-  getMarkers() {
+  getIssues() {
     // vrací kopii pro nezávislost
-    return [...this.markers];
+    return [...this.issues];
   }
 
-  addMarker({ lat, lng, situation, description }) {
-    this.markers.push({ lat, lng, situation, description });
+  addIssue({ lat, lng, condition, details }) {
+    this.issues.push({ lat, lng, condition, details });
   }
 
-  clearMarkers() {
-    this.markers = [];
+  resetIssues() {
+    this.issues = [];
   }
 
-  async findCoordsByPlace(place) {
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`);
+  async geocodeLocation(location) {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`);
     const data = await response.json();
     if (!data || !data[0]) {
-      throw new Error('Místo nenalezeno');
+      throw new Error('Lokalita nenalezena');
     }
     return {
       lat: Number(data[0].lat),
